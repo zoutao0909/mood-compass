@@ -1,61 +1,134 @@
-# mood-compass
+# 🌟 Mood Compass
 
-A mood tracking MVP built with Next.js + Prisma + SQLite.
+一个简洁的心情追踪应用，帮助你记录每日心情、发现规律、改善生活质量。
 
-## Stack
+## ✨ 功能特性
 
-- Next.js (App Router) + TypeScript
-- Tailwind CSS
-- Prisma + SQLite
-- Recharts
+### 核心功能
+- 📝 **记录心情** - 快速记录心情分数（1-10）、标签和备注
+- ✏️ **编辑删除** - 随时修改或删除历史记录
+- 📊 **趋势图表** - 可视化心情变化趋势
 
-## Run locally
+### 数据分析
+- 📈 **心情统计** - 总记录数、平均分、最高/最低分
+- 🏷️ **高频标签** - 显示最常见的心情触发因素
+- ⚠️ **低分预警** - 连续3天低分时自动提醒
+- 📅 **时间筛选** - 查看全部/7天/30天数据
 
+### 数据管理
+- 💾 **数据导出** - 支持 JSON 和 CSV 格式
+- 📱 **移动优先** - 响应式设计，手机体验优秀
+
+## 🛠️ 技术栈
+
+- **前端**: Next.js 16 + TypeScript + Tailwind CSS
+- **数据库**: Prisma + SQLite
+- **图表**: Recharts
+- **验证**: Zod
+
+## 🚀 快速开始
+
+### 1. 克隆项目
+```bash
+git clone https://github.com/zoutao0909/mood-compass.git
+cd mood-compass
+```
+
+### 2. 安装依赖
 ```bash
 npm install
+```
+
+### 3. 初始化数据库
+```bash
 npx prisma migrate dev
+```
+
+### 4. 启动开发服务器
+```bash
 npm run dev
 ```
 
-Open http://localhost:3000
+### 5. 访问应用
+打开浏览器访问 [http://localhost:3000](http://localhost:3000)
 
-## Features (v0.2 - Phase 2)
-
-### Core Features
-- Add mood entries (score, tags, note)
-- Edit and delete existing entries
-- List recent entries with filtering
-
-### Analysis
-- Mood trend chart (line chart)
-- Time range filters (7 days / 30 days / all)
-- Top triggers (most frequent tags)
-- Low mood warning (consecutive 3 days ≤ 4)
-
-### Coming Next
-- User authentication
-- Data export
-- Advanced insights
-- Mobile app
-
-## Project Structure
+## 📁 项目结构
 
 ```
 mood-compass/
 ├── src/
 │   ├── app/
-│   │   ├── api/mood/
-│   │   │   ├── route.ts         # GET (list) & POST (create)
-│   │   │   └── [id]/route.ts    # PUT (update) & DELETE
-│   │   ├── layout.tsx
-│   │   └── page.tsx             # Main UI
+│   │   ├── api/
+│   │   │   ├── mood/
+│   │   │   │   ├── route.ts         # GET (列表) & POST (创建)
+│   │   │   │   └── [id]/route.ts    # PUT (更新) & DELETE (删除)
+│   │   │   └── export/
+│   │   │       └── route.ts         # 数据导出 API
+│   │   ├── layout.tsx               # 根布局
+│   │   └── page.tsx                 # 主页面
 │   └── lib/
-│       └── prisma.ts            # Prisma client
+│       └── prisma.ts                # Prisma 客户端
 ├── prisma/
-│   └── schema.prisma            # Database schema
+│   ├── schema.prisma                # 数据库模型
+│   └── migrations/                  # 数据库迁移
 └── package.json
 ```
 
-## License
+## 📊 API 接口
+
+### 心情记录
+
+| 方法 | 端点 | 描述 |
+|------|------|------|
+| GET | `/api/mood` | 获取记录列表（支持 `?days=7` 筛选） |
+| POST | `/api/mood` | 创建新记录 |
+| PUT | `/api/mood/[id]` | 更新指定记录 |
+| DELETE | `/api/mood/[id]` | 删除指定记录 |
+
+### 数据导出
+
+| 方法 | 端点 | 描述 |
+|------|------|------|
+| GET | `/api/export` | 导出数据（支持 `?format=csv|json`） |
+
+## 🎯 使用建议
+
+1. **每日记录** - 建议每天固定时间记录一次心情
+2. **使用标签** - 添加相关标签帮助发现规律（如：工作、睡眠、运动）
+3. **查看趋势** - 定期查看图表了解心情变化
+4. **关注预警** - 注意低分预警，及时调整
+
+## 🔮 未来计划
+
+- [ ] 用户认证与多设备同步
+- [ ] 更详细的数据分析（周/月报告）
+- [ ] 心情提醒通知
+- [ ] 移动应用（React Native）
+- [ ] AI 辅助建议
+
+## 📝 更新日志
+
+### v0.3.0 (2026-03-19)
+- ✨ 新增数据导出功能（JSON/CSV）
+- 🎨 全面优化移动端体验
+- 📊 新增统计卡片（总数、平均分、最高/最低分）
+- 💄 重新设计 UI，更现代化的界面
+
+### v0.2.0 (2026-03-19)
+- ✨ 新增编辑/删除功能
+- 🔍 新增时间筛选（7天/30天）
+- 📊 新增标签统计（Top Triggers）
+- ⚠️ 新增连续低分预警
+
+### v0.1.0 (2026-03-19)
+- 🎉 初始版本发布
+- ✨ 基础心情记录功能
+- 📈 趋势图表展示
+
+## 📄 许可证
 
 MIT
+
+---
+
+Made with ❤️ by [zoutao0909](https://github.com/zoutao0909)
