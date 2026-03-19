@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# mood-compass
 
-## Getting Started
+A mood tracking MVP built with Next.js + Prisma + SQLite.
 
-First, run the development server:
+## Stack
+
+- Next.js (App Router) + TypeScript
+- Tailwind CSS
+- Prisma + SQLite
+- Recharts
+
+## Run locally
 
 ```bash
+npm install
+npx prisma migrate dev
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Features (v0.2 - Phase 2)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Core Features
+- Add mood entries (score, tags, note)
+- Edit and delete existing entries
+- List recent entries with filtering
 
-## Learn More
+### Analysis
+- Mood trend chart (line chart)
+- Time range filters (7 days / 30 days / all)
+- Top triggers (most frequent tags)
+- Low mood warning (consecutive 3 days ≤ 4)
 
-To learn more about Next.js, take a look at the following resources:
+### Coming Next
+- User authentication
+- Data export
+- Advanced insights
+- Mobile app
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+mood-compass/
+├── src/
+│   ├── app/
+│   │   ├── api/mood/
+│   │   │   ├── route.ts         # GET (list) & POST (create)
+│   │   │   └── [id]/route.ts    # PUT (update) & DELETE
+│   │   ├── layout.tsx
+│   │   └── page.tsx             # Main UI
+│   └── lib/
+│       └── prisma.ts            # Prisma client
+├── prisma/
+│   └── schema.prisma            # Database schema
+└── package.json
+```
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
