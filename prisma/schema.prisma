@@ -7,11 +7,23 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model User {
+  id           Int         @id @default(autoincrement())
+  email        String      @unique
+  passwordHash String
+  name         String?
+  moods        MoodEntry[]
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+}
+
 model MoodEntry {
   id        Int      @id @default(autoincrement())
   score     Int
   tags      String
   note      String?
+  userId    Int?
+  user      User?    @relation(fields: [userId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
