@@ -1,0 +1,9 @@
+-- CreateTable
+CREATE TABLE "MoodEntry" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "score" INTEGER NOT NULL,
+    "tags" TEXT NOT NULL,
+    "note" TEXT,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" DATETIME NOT NULL
+);
